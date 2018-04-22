@@ -33,6 +33,11 @@ public class Parole {
 			stampa+=s+"\n";
 		return stampa ;
 	}
+
+	public void cancellaParola(String parolaInserita) {
+		// TODO Auto-generated method stub
+		parole.remove(parolaInserita);
+	}
 	
 	
 }

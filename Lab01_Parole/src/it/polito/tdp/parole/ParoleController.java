@@ -41,6 +41,9 @@ public class ParoleController {
     @FXML // fx:id="btnInserisci"
     private Button btnInserisci; // Value injected by FXMLLoader
 
+    @FXML // fx:id="btnCancella"
+    private Button btnCancella; // Value injected by FXMLLoader
+   
     @FXML
     void doInsert(ActionEvent event) {
     	// TODO
@@ -61,8 +64,20 @@ public class ParoleController {
     	// TODO
     	elenco.reset();
 		txtResult.setText(elenco.toString());
+    }
+    
 
-    	
+    @FXML
+    void doCancella(ActionEvent event) {
+    	try {
+        	parolaInserita=txtParola.getText();
+        	} catch(NumberFormatException e){
+        		txtResult.setText("Inserisci un numero");
+        		return;
+        	}
+    	elenco.cancellaParola(parolaInserita);
+    	elenco.getElenco();
+		txtResult.setText(elenco.toString());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -70,7 +85,9 @@ public class ParoleController {
         assert txtParola != null : "fx:id=\"txtParola\" was not injected: check your FXML file 'Parole.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Parole.fxml'.";
         assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Parole.fxml'.";
+        assert btnCancella != null : "fx:id=\"btnCancella\" was not injected: check your FXML file 'Parole.fxml'.";
 
+        
         elenco = new Parole() ;
         
     }
