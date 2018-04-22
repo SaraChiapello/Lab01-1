@@ -44,6 +44,9 @@ public class ParoleController {
     @FXML // fx:id="btnCancella"
     private Button btnCancella; // Value injected by FXMLLoader
    
+    @FXML // fx:id="txtTime"
+    private TextArea txtTime; // Value injected by FXMLLoader
+
     @FXML
     void doInsert(ActionEvent event) {
     	// TODO
@@ -53,17 +56,30 @@ public class ParoleController {
         		txtResult.setText("Inserisci un numero");
         		return;
         	}
+		double start = System.nanoTime();
     	elenco.addParola(parolaInserita);
+		double stop = System.nanoTime();
     	elenco.getElenco();
 		txtResult.setText(elenco.toString());
+		
 
+		txtTime.clear();
+		txtTime.setText("[INSERT]: " + (stop - start) / 1e9 + " seconds");
+		txtParola.clear();
     }
     
     @FXML
     void doReset(ActionEvent event) {
     	// TODO
+		double start = System.nanoTime();
     	elenco.reset();
+		double stop = System.nanoTime();
+
+    	
 		txtResult.setText(elenco.toString());
+		txtTime.clear();
+		txtTime.setText("[INSERT]: " + (stop - start) / 1e9 + " seconds");
+
     }
     
 
@@ -75,10 +91,20 @@ public class ParoleController {
         		txtResult.setText("Inserisci un numero");
         		return;
         	}
+		double start = System.nanoTime();
     	elenco.cancellaParola(parolaInserita);
+		double stop = System.nanoTime();
+
+    	
     	elenco.getElenco();
 		txtResult.setText(elenco.toString());
+		
+		txtTime.clear();
+		txtTime.setText("[INSERT]: " + (stop - start) / 1e9 + " seconds");
+		txtParola.clear();
     }
+    
+    
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -86,7 +112,8 @@ public class ParoleController {
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Parole.fxml'.";
         assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Parole.fxml'.";
         assert btnCancella != null : "fx:id=\"btnCancella\" was not injected: check your FXML file 'Parole.fxml'.";
-
+        assert txtTime != null : "fx:id=\"txtTime\" was not injected: check your FXML file 'Parole.fxml'.";
+        
         
         elenco = new Parole() ;
         

@@ -7,7 +7,7 @@ public class Parole {
 		
 	public Parole() {
 		//TODO
-		parole=new ArrayList<String>();
+		parole=new LinkedList<String>();
 	}
 	
 	public void addParola(String p) {
