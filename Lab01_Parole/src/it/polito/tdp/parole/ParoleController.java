@@ -1,15 +1,17 @@
-package it.polito.tdp.parole;
+//https://github.com/SaraChiapello/Lab01-1.git
+	package it.polito.tdp.parole;
 
 /**
  * Sample Skeleton for 'Parole.fxml' Controller Class
  */
 
 
-import it.polito.tdp.parole.model.Parole;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.parole.model.Parole;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,6 +21,7 @@ import javafx.scene.control.TextField;
 public class ParoleController {
 	
 	Parole elenco ;
+	String parolaInserita;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -41,11 +44,25 @@ public class ParoleController {
     @FXML
     void doInsert(ActionEvent event) {
     	// TODO
+    	try {
+        	parolaInserita=txtParola.getText();
+        	} catch(NumberFormatException e){
+        		txtResult.setText("Inserisci un numero");
+        		return;
+        	}
+    	elenco.addParola(parolaInserita);
+    	elenco.getElenco();
+		txtResult.setText(elenco.toString());
+
     }
     
     @FXML
     void doReset(ActionEvent event) {
     	// TODO
+    	elenco.reset();
+		txtResult.setText(elenco.toString());
+
+    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
